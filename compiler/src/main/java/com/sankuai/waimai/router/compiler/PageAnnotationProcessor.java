@@ -51,6 +51,7 @@ public class PageAnnotationProcessor extends BaseProcessor {
                 hash = hash(cls.className());
             }
 
+            //CodeBlock 代码块格式字符串
             CodeBlock handler = buildHandler(isActivity, cls);
             CodeBlock interceptors = buildInterceptors(getInterceptors(page));
 
@@ -70,6 +71,7 @@ public class PageAnnotationProcessor extends BaseProcessor {
 
     private static List<? extends TypeMirror> getInterceptors(RouterPage page) {
         try {
+            //初次编译的时候，没有对应interceptors的class 会抛出异常
             page.interceptors();
         } catch (MirroredTypesException mte) {
             return mte.getTypeMirrors();

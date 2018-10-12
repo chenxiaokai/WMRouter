@@ -80,6 +80,7 @@ public abstract class BaseProcessor extends AbstractProcessor {
         return type != null && types.isSubtype(type, typeMirror(className));
     }
 
+    //element 是否是 className的 子类型，相同类型返回false
     public boolean isSubType(Element element, String className) {
         return element != null && isSubType(element.asType(), className);
     }
@@ -229,13 +230,18 @@ public abstract class BaseProcessor extends AbstractProcessor {
         private final CodeBlock.Builder builder;
         private final ClassName serviceLoaderClass;
 
+        //className 就是  ServiceInit
         public ServiceInitClassBuilder(String className) {
             this.className = className;
             this.builder = CodeBlock.builder();
+            //Const.SERVICE_LOADER_CLASS  就是  com.sankuai.waimai.router.service.ServiceLoader
             this.serviceLoaderClass = className(Const.SERVICE_LOADER_CLASS);
         }
 
         public ServiceInitClassBuilder put(String interfaceName, String key, String implementName, boolean singleton) {
+            /*
+                ServiceLoader.put(接口.class, RouterService中key, 接口实现类.class, RouterService中singlton)
+             */
             builder.addStatement("$T.put($T.class, $S, $T.class, $L)",
                     serviceLoaderClass,
                     className(interfaceName),
@@ -268,6 +274,7 @@ public abstract class BaseProcessor extends AbstractProcessor {
                     .addMethod(methodSpec)
                     .build();
             try {
+                //Const.GEN_PKG_SERVICE 就是 com.sankuai.waimai.router.generated.service
                 JavaFile.builder(Const.GEN_PKG_SERVICE, typeSpec)
                         .build()
                         .writeTo(filer);

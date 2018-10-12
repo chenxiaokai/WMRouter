@@ -10,10 +10,8 @@ public class ServiceImpl {
     public static final String SPLITTER = ":";
     public static final String SINGLETON = "singleton";
 
-    public static String checkConflict(String interfaceName, ServiceImpl impl,
-            ServiceImpl previous) {
-        if (impl != null && previous != null && !stringEquals(previous.implementation,
-                impl.implementation)) {
+    public static String checkConflict(String interfaceName, ServiceImpl impl, ServiceImpl previous) {
+        if (impl != null && previous != null && !stringEquals(previous.implementation, impl.implementation)) {
             return String.format("接口%s对应key='%s'存在多个实现: %s, %s",
                     interfaceName, impl.getKey(), previous, impl);
         }

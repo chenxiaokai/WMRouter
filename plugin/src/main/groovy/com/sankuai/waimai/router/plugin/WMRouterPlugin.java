@@ -13,6 +13,7 @@ public class WMRouterPlugin implements Plugin<Project> {
 
     @Override
     public void apply(Project project) {
+        //获取自定义插件的参数
         WMRouterExtension extension = project.getExtensions()
                 .create(Const.NAME, WMRouterExtension.class);
 

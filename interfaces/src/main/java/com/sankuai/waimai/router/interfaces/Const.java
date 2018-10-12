@@ -22,25 +22,25 @@ public class Const {
     public static final String INIT_METHOD = "init";
 
     // Library中的类名
-    public static final String PAGE_ANNOTATION_HANDLER_CLASS =
-            PKG + "common.PageAnnotationHandler";
-    public static final String PAGE_ANNOTATION_INIT_CLASS =
-            PKG + "common.IPageAnnotationInit";
-    public static final String URI_ANNOTATION_HANDLER_CLASS =
-            PKG + "common.UriAnnotationHandler";
-    public static final String URI_ANNOTATION_INIT_CLASS =
-            PKG + "common.IUriAnnotationInit";
-    public static final String REGEX_ANNOTATION_HANDLER_CLASS =
-            PKG + "regex.RegexAnnotationHandler";
-    public static final String REGEX_ANNOTATION_INIT_CLASS =
-            PKG + "regex.IRegexAnnotationInit";
+    //com.sankuai.waimai.router.common.PageAnnotationHandler
+    public static final String PAGE_ANNOTATION_HANDLER_CLASS = PKG + "common.PageAnnotationHandler";
+    //com.sankuai.waimai.router.common.IPageAnnotationInit
+    public static final String PAGE_ANNOTATION_INIT_CLASS = PKG + "common.IPageAnnotationInit";
+    //com.sankuai.waimai.router.common.UriAnnotationHandler
+    public static final String URI_ANNOTATION_HANDLER_CLASS = PKG + "common.UriAnnotationHandler";
+    //com.sankuai.waimai.router.common.IUriAnnotationInit
+    public static final String URI_ANNOTATION_INIT_CLASS = PKG + "common.IUriAnnotationInit";
+    //com.sankuai.waimai.router.regex.RegexAnnotationHandler
+    public static final String REGEX_ANNOTATION_HANDLER_CLASS = PKG + "regex.RegexAnnotationHandler";
+    //com.sankuai.waimai.router.regex.IRegexAnnotationInit
+    public static final String REGEX_ANNOTATION_INIT_CLASS = PKG + "regex.IRegexAnnotationInit";
 
-    public static final String URI_HANDLER_CLASS =
-            PKG + "core.UriHandler";
-    public static final String URI_INTERCEPTOR_CLASS =
-            PKG + "core.UriInterceptor";
-    public static final String SERVICE_LOADER_CLASS =
-            PKG + "service.ServiceLoader";
+    //com.sankuai.waimai.router.core.UriHandler
+    public static final String URI_HANDLER_CLASS = PKG + "core.UriHandler";
+    //com.sankuai.waimai.router.core.UriInterceptor
+    public static final String URI_INTERCEPTOR_CLASS = PKG + "core.UriInterceptor";
+    //com.sankuai.waimai.router.service.ServiceLoader
+    public static final String SERVICE_LOADER_CLASS = PKG + "service.ServiceLoader";
 
     // Android中的类名
     public static final String ACTIVITY_CLASS = "android.app.Activity";

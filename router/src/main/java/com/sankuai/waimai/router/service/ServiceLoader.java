@@ -54,8 +54,10 @@ public class ServiceLoader<I> {
     /**
      * 提供给InitClass使用的初始化接口
      *
-     * @param interfaceClass 接口类
-     * @param implementClass 实现类
+     * @param interfaceClass 标记RouterService注解使用 implement的 接口类
+     * @param key RouterService注解中的key
+     * @param implementClass 标记RouterService注解，实现interfaceClass的实现类
+     * @param singleton RouterService注解中的singleton
      */
     public static void put(Class interfaceClass, String key, Class implementClass, boolean singleton) {
         ServiceLoader loader = SERVICES.get(interfaceClass);

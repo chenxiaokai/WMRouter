@@ -35,9 +35,14 @@ public class ServiceAnnotationProcessor extends BaseProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment env) {
+        //process()会执行三次，前两次processingOver()都是false，最后一次processingOver()是true
+        //processingOver()的意思是应该是编译处理完毕没有
         if (env.processingOver()) {
+            //生成.java文件
             generateInitClass();
         } else {
+
+            //mEntityMap 中 填充数据
             processAnnotations(env);
         }
         return true;
@@ -62,10 +67,12 @@ public class ServiceAnnotationProcessor extends BaseProcessor {
             List<? extends TypeMirror> typeMirrors = getInterface(service);
             String[] keys = service.key();
 
+            //implementationName 是实现接口的类名
             String implementationName = cls.className();
             boolean singleton = service.singleton();
 
             if (typeMirrors != null && !typeMirrors.isEmpty()) {
+                //typeMirrors 是标注RouterService注解的实现的接口集合
                 for (TypeMirror mirror : typeMirrors) {
                     if (mirror == null) {
                         continue;
@@ -106,6 +113,10 @@ public class ServiceAnnotationProcessor extends BaseProcessor {
         ServiceInitClassBuilder generator = new ServiceInitClassBuilder("ServiceInit" + Const.SPLITTER + mHash);
         for (Map.Entry<String, Entity> entry : mEntityMap.entrySet()) {
             for (ServiceImpl service : entry.getValue().getMap().values()) {
+                //entry.getKey() 是 标记RouterService注解的 实现的一个接口
+                //service.getKey() 是 标记RouterService注解中的  key
+                //service.getgetImplementation() 是 标记RouterService注解 实现接口的 类名
+                //service.isSingleton() 是 标记RouterService注解中的 singleton
                 generator.put(entry.getKey(), service.getKey(), service.getImplementation(), service.isSingleton());
             }
         }
@@ -146,6 +157,7 @@ public class ServiceAnnotationProcessor extends BaseProcessor {
             }
             ServiceImpl impl = new ServiceImpl(key, implementationName, singleton);
             ServiceImpl prev = mMap.put(impl.getKey(), impl);
+
             String errorMsg = ServiceImpl.checkConflict(mInterfaceName, prev, impl);
             if (errorMsg != null) {
                 throw new RuntimeException(errorMsg);
