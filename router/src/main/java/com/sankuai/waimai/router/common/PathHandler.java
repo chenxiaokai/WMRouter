@@ -25,6 +25,7 @@ public class PathHandler extends UriHandler {
     /**
      * path --> UriHandler
      */
+    //mMap 存放的key为path，value存放对应path的UriHandler实现，这个在下面register中调用的，register调用在注解类生成中的
     @NonNull
     private final CaseInsensitiveNonNullMap<UriHandler> mMap = new CaseInsensitiveNonNullMap<>();
     @Nullable
@@ -55,8 +56,7 @@ public class PathHandler extends UriHandler {
      * @param exported     是否允许外部跳转
      * @param interceptors 要添加的interceptor
      */
-    public void register(String path, Object target, boolean exported,
-            UriInterceptor... interceptors) {
+    public void register(String path, Object target, boolean exported, UriInterceptor... interceptors) {
         if (!TextUtils.isEmpty(path)) {
             path = RouterUtils.appendSlash(path);
             UriHandler parse = UriTargetTools.parse(target, exported, interceptors);

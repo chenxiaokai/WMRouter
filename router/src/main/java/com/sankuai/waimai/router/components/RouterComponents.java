@@ -45,6 +45,8 @@ public class RouterComponents {
      * @see AnnotationLoader#load(UriHandler, Class)
      */
     public static <T extends UriHandler> void loadAnnotation(T handler, Class<? extends AnnotationInit<T>> initClass) {
+        //这里主要加载调用 compiler库 生成的 AnnotationInit 实现类，分别是 PageAnnotationInit_xxx, RegexAnnotationInit_xxx
+        //, UriAnnotationInit_xxx 并调用里面的 init方法
         sAnnotationLoader.load(handler, initClass);
     }
 

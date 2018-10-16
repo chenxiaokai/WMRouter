@@ -17,8 +17,7 @@ public class RegexWrapperHandler extends WrapperHandler {
     private final Pattern mPattern;
     private final int mPriority;
 
-    public RegexWrapperHandler(@NonNull Pattern pattern, int priority,
-            @NonNull UriHandler delegate) {
+    public RegexWrapperHandler(@NonNull Pattern pattern, int priority, @NonNull UriHandler delegate) {
         super(delegate);
         mPattern = pattern;
         mPriority = priority;

@@ -1,0 +1,20 @@
+1）：
+    core: 提供核心接口和实现类，提供基础通用能力
+
+    utils: 通用工具类
+
+    components: 辅助功能组件
+
+2):
+    在保证核心组件灵活性的基础上，WMRouter又封装了一系列通用实现类，并组合成一套默认实现，满足绝大多数使用场景。
+
+    activity: Activity跳转相关
+
+    regex: 正则匹配相关
+
+    common: UriHandler UriIntercepter UriRequest通用实现类
+
+3):
+    service: ServiceLoader模块
+
+    method: 方法调用，提供了几个通用接口，基于ServiceLoader实现方法调用

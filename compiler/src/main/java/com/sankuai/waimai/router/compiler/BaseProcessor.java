@@ -31,9 +31,11 @@ import javax.lang.model.util.Types;
  */
 
 public abstract class BaseProcessor extends AbstractProcessor {
-
+    //Filer可以创建文件
     protected Filer filer;
+    //Types 一个用来处理TypeMirror的工具类
     protected Types types;
+    //一个用来处理Element的工具类，源代码的每一个部分都是一个特定类型的Element
     protected Elements elements;
 
     @Override
@@ -204,6 +206,8 @@ public abstract class BaseProcessor extends AbstractProcessor {
         String fullImplName = Const.GEN_PKG + Const.DOT + genClassName;
         String className = "ServiceInit" + Const.SPLITTER + hash(genClassName);
 
+        //生成在 com.sankuai.waimai.router.generated下面的文件，需要在com.sankuai.waimai.router.generated.service下面
+        //生成对应的 ServiceInit文件
         new ServiceInitClassBuilder(className)
                 .putDirectly(interfaceName, fullImplName, fullImplName, false)
                 .build();

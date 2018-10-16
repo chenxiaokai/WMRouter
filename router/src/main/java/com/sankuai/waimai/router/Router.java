@@ -46,7 +46,7 @@ import java.util.List;
 public class Router {
 
     @SuppressLint("StaticFieldLeak")
-    private static RootUriHandler ROOT_HANDLER;
+    private static RootUriHandler ROOT_HANDLER;  //ROOT_HANDLER  是 DefaultRootUriHandler 的实例对象
 
     /**
      * 此初始化方法必须在主线程调用。
@@ -68,7 +68,10 @@ public class Router {
      * 本方法线程安全。
      */
     public static void lazyInit() {
+        //这个ServiceLoader 初始化时 加载 生成的 ServiceLoaderInit类并调用里面的init方法
         ServiceLoader.lazyInit();
+
+        //这个lazyInit()初始化在 DefaultRootUriHandler 中调用
         getRootHandler().lazyInit();
     }
 

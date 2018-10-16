@@ -27,6 +27,7 @@ import java.util.Map;
  */
 public class ServiceLoader<I> {
 
+    //SERVICES 对应 key为接口类Class  value为接口类的ServiceLoader对象
     private static final Map<Class, ServiceLoader> SERVICES = new HashMap<>();
 
     private static final LazyInitHelper sInitHelper = new LazyInitHelper("ServiceLoader") {
@@ -34,6 +35,9 @@ public class ServiceLoader<I> {
         protected void doInit() {
             try {
                 // 反射调用Init类，避免引用的类过多，导致main dex capacity exceeded问题
+                //Const.SERVICE_LOADER_INIT => com.sankuai.waimai.router.generated.ServiceLoaderInit
+                //ServiceLoaderInit 是plugin VMRouter 任务生成的类，并调用 init的方法， init方法主要调用 demoapp demolib
+                //demolib 中生成 ServiceInit_xxx 中的 init方法
                 Class.forName(Const.SERVICE_LOADER_INIT)
                         .getMethod(Const.INIT_METHOD)
                         .invoke(null);
@@ -52,7 +56,7 @@ public class ServiceLoader<I> {
     }
 
     /**
-     * 提供给InitClass使用的初始化接口
+     * 提供给 ServiceInit_xxx类 使用的初始化接口
      *
      * @param interfaceClass 标记RouterService注解使用 implement的 接口类
      * @param key RouterService注解中的key

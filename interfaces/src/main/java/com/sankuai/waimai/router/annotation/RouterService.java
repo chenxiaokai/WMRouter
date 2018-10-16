@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 声明一个Service，通过interface和key加载实现类。此注解可以用在任意静态类上。
- *
+ * <p>
  * Created by jzj on 2018/3/29.
  */
 @Target(ElementType.TYPE)

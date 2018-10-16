@@ -21,7 +21,7 @@ import javax.lang.model.type.MirroredTypesException;
 import javax.lang.model.type.TypeMirror;
 
 @AutoService(Processor.class)
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_7)   //本次编译采用 java7 版本
 public class PageAnnotationProcessor extends BaseProcessor {
 
     @Override
@@ -29,6 +29,8 @@ public class PageAnnotationProcessor extends BaseProcessor {
         if (annotations == null || annotations.isEmpty()) {
             return false;
         }
+
+        //CodeBlock 是JavaPoet 代码拼接工具类
         CodeBlock.Builder builder = CodeBlock.builder();
         String hash = null;
         for (Element element : env.getElementsAnnotatedWith(RouterPage.class)) {
@@ -79,6 +81,7 @@ public class PageAnnotationProcessor extends BaseProcessor {
         return null;
     }
 
+    //当前PageAnnotationProcessor 需要处理的注解类型
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         return new HashSet<>(Collections.singletonList(RouterPage.class.getName()));

@@ -8,6 +8,8 @@ import org.gradle.api.Project;
 
 /**
  * 插件所做工作：将注解生成器生成的初始化类汇总到ServiceLoaderInit，运行时直接调用ServiceLoaderInit
+ *
+ * ServiceLoaderInit 是在 plugin 插件中生成的
  */
 public class WMRouterPlugin implements Plugin<Project> {
 

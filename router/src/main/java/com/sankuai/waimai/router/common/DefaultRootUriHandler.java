@@ -57,8 +57,11 @@ public class DefaultRootUriHandler extends RootUriHandler {
      * @see LazyInitHelper#lazyInit()
      */
     public void lazyInit() {
+        //调用生成的 PageAnnotationInit_xxx 中的 init方法
         mPageAnnotationHandler.lazyInit();
+        //调用生成的 RegexAnnotationInit_xxx 中的 init方法
         mUriAnnotationHandler.lazyInit();
+        //调用生成的 UriAnnotationInit_xxx 中的 init方法
         mRegexAnnotationHandler.lazyInit();
     }
 

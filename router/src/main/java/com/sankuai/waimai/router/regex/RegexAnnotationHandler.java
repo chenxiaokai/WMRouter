@@ -59,8 +59,7 @@ public class RegexAnnotationHandler extends ChainedHandler {
         if (pattern != null) {
             UriHandler innerHandler = UriTargetTools.parse(target, exported, interceptors);
             if (innerHandler != null) {
-                RegexWrapperHandler handler = new RegexWrapperHandler(pattern, priority,
-                        innerHandler);
+                RegexWrapperHandler handler = new RegexWrapperHandler(pattern, priority, innerHandler);
                 addChildHandler(handler, priority);
             }
         }

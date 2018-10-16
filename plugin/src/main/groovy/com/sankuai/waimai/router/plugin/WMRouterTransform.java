@@ -102,6 +102,7 @@ public class WMRouterTransform extends Transform {
         File dest = invocation.getOutputProvider().getContentLocation(
                 "WMRouter", TransformManager.CONTENT_CLASS,
                 ImmutableSet.of(QualifiedContent.Scope.PROJECT), Format.DIRECTORY);
+
         generateServiceInitClass(dest.getAbsolutePath(), initClasses);
 
         WMRouterLogger.info(TRANSFORM + "cost %s ms", System.currentTimeMillis() - ms);
@@ -116,6 +117,7 @@ public class WMRouterTransform extends Transform {
         while (entries.hasMoreElements()) {
             JarEntry entry = entries.nextElement();
             String name = entry.getName();
+            //INIT_SERVICE_PATH  =>  com/sankuai/waimai/router/generated/service
             if (name.endsWith(SdkConstants.DOT_CLASS) && name.startsWith(INIT_SERVICE_PATH)) {
                 String className = trimName(name, 0).replace('/', '.');
                 initClasses.add(className);
@@ -128,6 +130,7 @@ public class WMRouterTransform extends Transform {
      * 扫描由注解生成器生成到包 {@link Const#GEN_PKG_SERVICE} 里的初始化类
      */
     private void scanDir(File dir, Set<String> initClasses) throws IOException {
+        //INIT_SERVICE_DIR => com/sankuai/waimai/router/generated/service
         File packageDir = new File(dir, INIT_SERVICE_DIR);
         if (packageDir.exists() && packageDir.isDirectory()) {
             Collection<File> files = FileUtils.listFiles(packageDir,
